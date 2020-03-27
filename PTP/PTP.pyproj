@@ -57,6 +57,7 @@
     <Folder Include="PTP\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\static\app\scripts\petzak.js" />
     <Content Include="app\templates\app\IDE.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
