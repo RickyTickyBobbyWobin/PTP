@@ -401,7 +401,7 @@ hr {
 }
 
 p {
-  margin: 0 0 10px;
+  margin: 0 0 0px;
 }
 
 .lead {
@@ -411,11 +411,13 @@ p {
   line-height: 1.4;
 }
 
+
+
 @media (min-width: 768px) {
   .lead {
     font-size: 21px;
   }
-}
+
 
 small {
   font-size: 85%;
@@ -4250,6 +4252,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
   line-height: 20px;
 }
 
+.navbar-navR > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+}
+
 @media (max-width: 767px) {
   .navbar-nav .open .dropdown-menu {
     position: static;
@@ -4946,6 +4954,8 @@ a.list-group-item.active > .badge,
 
 .jumbotron p {
   line-height: 1.4;
+  font-size: 12px;
+  padding: 5px;
 }
 
 .container .jumbotron {
@@ -4964,6 +4974,7 @@ a.list-group-item.active > .badge,
   .jumbotron h1 {
     font-size: 63px;
   }
+
 }
 
 .thumbnail {
