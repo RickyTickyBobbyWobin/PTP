@@ -57,7 +57,16 @@
     <Folder Include="PTP\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\static\app\scripts\debugger.js" />
     <Content Include="app\static\app\scripts\petzak.js" />
+    <Content Include="app\static\app\scripts\skulpt-stdlib.js" />
+    <Content Include="app\static\app\scripts\skulpt.es5.min.js" />
+    <Content Include="app\static\app\scripts\skulpt.js">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="app\static\app\scripts\skulpt.min.js">
+      <Publish>True</Publish>
+    </Content>
     <Content Include="app\templates\app\IDE.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />

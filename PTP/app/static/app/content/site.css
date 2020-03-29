@@ -347,6 +347,19 @@ a.article:hover {
     }
 }
 
+/* ---------------------------------------------------
+    Cutsom Skulpt CSS
+----------------------------------------------------- */
+
+
+div #mycanvas {
+    width: 600px;
+    height: 500px;
+    border: 15px solid green;
+    padding: 50px;
+    margin: 20px;
+    background-color: white;
+}
 
 
 
@@ -365,7 +378,7 @@ a.article:hover {
 
 
 
-/*#sidebar {
+    /*#sidebar {
     width: 250px;
     position: fixed;
     top: 0;

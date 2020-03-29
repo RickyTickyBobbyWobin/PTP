@@ -726,23 +726,25 @@ code {
   border-radius: 4px;
 }
 
-pre {
-  display: block;
-  padding: 9.5px;
-  margin: 0 0 10px;
-  font-size: 13px;
-  line-height: 1.428571429;
-  color: #333333;
-  word-break: break-all;
-  word-wrap: break-word;
-  background-color: #f5f5f5;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-}
-
-pre.prettyprint {
-  margin-bottom: 20px;
-}
+    pre {
+        display: block;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.428571429;
+        color: #333333;
+        word-break: break-all;
+        word-wrap: break-word;
+        background-color: #f5f5f5;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        /*width: 600px;
+        height: 500px;
+        border: 15px solid green;
+        padding: 50px;
+        margin: 20px;
+        background-color: white;*/
+    }
 
 pre code {
   padding: 0;
@@ -1109,7 +1111,8 @@ pre code {
     width: 25%;
   }
   .col-md-4 {
-    width: 33.33333333333333%;
+    width: 31%;
+    margin: 15px;
   }
   .col-md-5 {
     width: 41.66666666666667%;
