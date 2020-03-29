@@ -2,134 +2,60 @@
 
 {% block content %}
 
-<<script type="text/javascript"> 
-
-$(document).ready(function () {
-
-    $("#sidebar").mCustomScrollbar({
-         theme: "minimal"
-    });
-
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-
-});
-
-$(document).ready(function () {
-
-    $("#sidebar").mCustomScrollbar({
-         theme: "minimal"
-    });
-
-    $('#sidebarCollapse').on('click', function () {
-        // open or close navbar
-        $('#sidebar').toggleClass('active');
-        // close dropdowns
-        $('.collapse.in').toggleClass('in');
-        // and also adjust aria-expanded attributes we use for the open/closed arrows
-        // in our CSS
-        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-    });
-
-});
-
-
-$(document).ready(function () {
-
-$('#sidebarCollapse').on('click', function () {
-    $('#sidebar').toggleClass('active');
-});
-
-});
-
-</script>
-
- 
-<!--Page Content: Was using #content previously-->
-<div class="wrapper">
-<nav id="sidebar">
-    <div class="sidebar-header">
-        <h3>Bootstrap Sidebar</h3>
-    </div>
-
-    <ul class="list-unstyled components">
-        <li>
-            <a href="#">About</a>
-        </li>
-        <li>
-            <a href="#">Portfolio</a>
-        </li>
-        <li>
-            <a href="#">Contact</a>
-        </li>
-    </ul>
-
-</nav>
-<div id="content">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <button type="button" id="sidebarCollapse" class="btn btn-info">
-            <i class="fas fa-align-left"></i>
-            <span>Toggle Sidebar</span>
-        </button>
-    </div>
-</nav>
-
     <!--Skulpt-->
         <script type="text/javascript"> 
-        // output functions are configurable.  This one just appends some text
-        // to a pre element.
-        function outf(text) { 
-            var mypre = document.getElementById("output"); 
-            mypre.innerHTML = mypre.innerHTML + text; 
-        } 
-        function builtinRead(x) {
-            if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
-                    throw "File not found: '" + x + "'";
-            return Sk.builtinFiles["files"][x];
-        }
+// output functions are configurable.  This one just appends some text
+// to a pre element.
+function outf(text) { 
+    var mypre = document.getElementById("output"); 
+    mypre.innerHTML = mypre.innerHTML + text; 
+} 
+function builtinRead(x) {
+    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+            throw "File not found: '" + x + "'";
+    return Sk.builtinFiles["files"][x];
+}
 
-        // Here's everything you need to run a python program in skulpt
-        // grab the code from your textarea
-        // get a reference to your pre element for output
-        // configure the output function
-        // call Sk.importMainWithBody()
-        function runit() { 
-           var prog = document.getElementById("yourcode").value; 
-           var mypre = document.getElementById("output"); 
-           mypre.innerHTML = ''; 
-           Sk.pre = "output";
-           Sk.configure({output:outf, read:builtinRead}); 
-           (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
-           var myPromise = Sk.misceval.asyncToPromise(function() {
-               return Sk.importMainWithBody("<stdin>", false, prog, true);
-           });
-           myPromise.then(function(mod) {
-               console.log('success');
-           },
-               function(err) {
-               console.log(err.toString());
-           });
-        } 
-        </script> 
+// Here's everything you need to run a python program in skulpt
+// grab the code from your textarea
+// get a reference to your pre element for output
+// configure the output function
+// call Sk.importMainWithBody()
+function runit() { 
+   var prog = document.getElementById("yourcode").value; 
+   var mypre = document.getElementById("output"); 
+   mypre.innerHTML = ''; 
+   Sk.pre = "output";
+   Sk.configure({output:outf, read:builtinRead}); 
+   (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
+   var myPromise = Sk.misceval.asyncToPromise(function() {
+       return Sk.importMainWithBody("<stdin>", false, prog, true);
+   });
+   myPromise.then(function(mod) {
+       console.log('success');
+   },
+       function(err) {
+       console.log(err.toString());
+   });
+} 
+</script> 
 
-        <h3>Try This</h3> 
-        <form> 
-        <textarea id="yourcode" cols="40" rows="10">import turtle
+<h3>Try This</h3> 
+<form> 
+<textarea id="yourcode" cols="40" rows="10">import turtle
 
-        t = turtle.Turtle()
-        t.forward(100)
+t = turtle.Turtle()
+t.forward(100)
 
-        print "Hello World" 
-        </textarea><br /> 
-        <button type="button" onclick="runit()">Run</button> 
-        </form> 
-        <pre id="output" ></pre> 
-        <!-- If you want turtle graphics include a canvas -->
-        <div id="mycanvas"></div> 
-    </div> 
-</div> 
+print "Hello World" 
+</textarea><br /> 
+<button type="button" onclick="runit()">Run</button> 
+</form> 
+<pre id="output" ></pre> 
+<!-- If you want turtle graphics include a canvas -->
+<div id="mycanvas"></div> 
+
+
 
 
 {% endblock %}
