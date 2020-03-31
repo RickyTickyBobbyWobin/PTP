@@ -5,77 +5,95 @@
 <div id="wrapper" class="active">
 <!--new sidebar-->
 <!-- Sidebar -->
-<div id="sidebar-wrapper">
-    <ul id="sidebar_menu" class="sidebar-nav">
-        <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
-    </ul>
-    <ul class="sidebar-nav" id="sidebar">     
-        <li><a>Link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-        <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-    </ul>
-</div> 
+    <div id="sidebar-wrapper">
+        <ul id="sidebar_menu" class="sidebar-nav">
+            <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
+        </ul>
+        <ul class="sidebar-nav" id="sidebar">     
+            <li><a>Link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+            <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+        </ul>
+    </div> 
 
 
-      <!-- Page content -->
-      <div id="page-content-wrapper">
-        <!-- Keep all page content within the page-content inset div! -->
-        <div class="page-content inset">
+    <!-- Page content -->
+    <div id="page-content-wrapper">
+    <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset" style="height:100%">
 
-<!--Skulpt-->
-<script type="text/javascript"> 
-// output functions are configurable.  This one just appends some text
-// to a pre element.
-function outf(text) { 
-    var mypre = document.getElementById("output"); 
-    mypre.innerHTML = mypre.innerHTML + text; 
-} 
-function builtinRead(x) {
-    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
-            throw "File not found: '" + x + "'";
-    return Sk.builtinFiles["files"][x];
-}
+            <!--Skulpt-->
+            <script type="text/javascript"> 
+            // output functions are configurable.  This one just appends some text
+            // to a pre element.
+            function outf(text) { 
+                var mypre = document.getElementById("output"); 
+                mypre.innerHTML = mypre.innerHTML + text; 
+            } 
+            function builtinRead(x) {
+                if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                        throw "File not found: '" + x + "'";
+                return Sk.builtinFiles["files"][x];
+            }
 
-// Here's everything you need to run a python program in skulpt
-// grab the code from your textarea
-// get a reference to your pre element for output
-// configure the output function
-// call Sk.importMainWithBody()
-function runit() { 
-   var prog = document.getElementById("yourcode").value; 
-   var mypre = document.getElementById("output"); 
-   mypre.innerHTML = ''; 
-   Sk.pre = "output";
-   Sk.configure({output:outf, read:builtinRead}); 
-   (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
-   var myPromise = Sk.misceval.asyncToPromise(function() {
-       return Sk.importMainWithBody("<stdin>", false, prog, true);
-   });
-   myPromise.then(function(mod) {
-       console.log('success');
-   },
-       function(err) {
-       console.log(err.toString());
-   });
-} 
+            // Here's everything you need to run a python program in skulpt
+            // grab the code from your textarea
+            // get a reference to your pre element for output
+            // configure the output function
+            // call Sk.importMainWithBody()
+            function runit() { 
+                var prog = document.getElementById("code").value; 
+                var mypre = document.getElementById("output"); 
+                mypre.innerHTML = ''; 
+                Sk.pre = "output";
+                Sk.configure({output:outf, read:builtinRead}); 
+                (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
+                var myPromise = Sk.misceval.asyncToPromise(function() {
+                    return Sk.importMainWithBody("<stdin>", false, prog, true);
+                });
+                myPromise.then(function(mod) {
+                    console.log('success');
+                },
+                    function(err) {
+                    console.log(err.toString());
+                });
+            } 
+            </script> 
+
+            <div class="IDErow">
+                    <div class="IDEcol">
+                    <form style="flex: 100%; height: 100%;">
+                        <div><button type="button" onclick="runit()">Run</button></div>
+                        <textarea id="code" name="code">
+print("Hello")
+                        </textarea>
+                    </form>
+                    </div>
+                <div class="IDEcol">
+                    <div><button type="button" onclick="">Test</button></div>
+                <pre id="output" style="flex: 100%; height: 100%;"></pre> 
+                </div>
+            </div>
+        </div> 
+    </div> 
+</div>
+
+<!--creates codemirror instance-->
+<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    viewportMargin: Infinity,
+    styleActiveLine: true,
+    matchBrackets: true,
+    theme: "3024-night" //codemirror.net/demo/theme.html
+    });
 </script> 
 
-<div class="IDErow">
-<div class="IDEcol">
-<form style="flex: 100%; height: 600px;">
-<div><button type="button" onclick="runit()">Run</button></div>
-<textarea id="yourcode" style="flex: 100%; height: 600px;" >
-print "Hello World" 
-</textarea><br /> 
-</form>
-</div>
-<div class="IDEcol">
-    <div><button type="button" onclick="">Test</button></div>
-<pre id="output" style="flex: 100%; height: 600px;"></pre> 
-</div>
-</div>
-</div> 
-</div> 
-</div> 
-
+<!--sidebar Javascript-->
+<script type="text/javascript"> 
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });
+</script> 
 
 {% endblock %}
